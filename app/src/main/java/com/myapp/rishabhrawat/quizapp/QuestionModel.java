@@ -9,6 +9,11 @@ public class QuestionModel {
     String optionD;
     String answer;
 
+    QuestionModel()
+    {
+
+    }
+
     public QuestionModel(String question, String optionA, String optionB, String optionC, String optionD, String answer) {
         this.question = question;
         this.optionA = optionA;

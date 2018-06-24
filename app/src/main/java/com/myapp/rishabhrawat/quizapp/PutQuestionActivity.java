@@ -45,25 +45,19 @@ public class PutQuestionActivity extends AppCompatActivity {
         //setting up the sharePreference for question series
         sharedPreferences = getApplicationContext().getSharedPreferences("questionseries", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        num = sharedPreferences.getInt("question_NO", 5);
+        num = sharedPreferences.getInt("question_NO", 1);
 
         answer.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.radioButton)
-                {
-                    answer_text="A";
-                    Toast.makeText(PutQuestionActivity.this, "option A "+answer_text, Toast.LENGTH_SHORT).show();
-                }
+                    answer_text="a";
                 else if(checkedId==R.id.radioButton2)
-                {
-                    answer_text="B";
-                    Toast.makeText(PutQuestionActivity.this, "option B "+answer_text, Toast.LENGTH_SHORT).show();
-                }
+                    answer_text="b";
                 else if(checkedId==R.id.radioButton3)
-                    answer_text="C";
+                    answer_text="c";
                 else if(checkedId==R.id.radioButton4)
-                    answer_text="D";
+                    answer_text="d";
                 else{}
             }
         });

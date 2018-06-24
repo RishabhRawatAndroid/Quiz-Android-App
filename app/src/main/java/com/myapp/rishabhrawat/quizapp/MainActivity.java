@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         next=findViewById(R.id.button2);
 
         next.setVisibility(View.INVISIBLE);
+        timer.setVisibility(View.INVISIBLE);
+        question.setVisibility(View.INVISIBLE);
+        option_group.setVisibility(View.INVISIBLE);
+
         questionModelArrayList=new ArrayList<>();
         reference=FirebaseDatabase.getInstance().getReference().child("questionsBank1");
         //this call back run only a single time
@@ -71,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 start.setVisibility(View.INVISIBLE);
                 next.setVisibility(View.VISIBLE);
+                timer.setVisibility(View.VISIBLE);
+                question.setVisibility(View.VISIBLE);
+                option_group.setVisibility(View.VISIBLE);
+
                 Setting_the_question();
                 new CountDownTimer(60000, 1000) {
 

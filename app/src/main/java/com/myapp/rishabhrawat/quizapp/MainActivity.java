@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup option_group;
     RadioButton optionA,optionB,optionC,optionD;
     Button start,next;
+    static int ques_no=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 question.setVisibility(View.VISIBLE);
                 option_group.setVisibility(View.VISIBLE);
 
-                Setting_the_question();
+                Setting_the_question(ques_no);
                 new CountDownTimer(60000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
@@ -94,15 +95,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(questionModelArrayList.size()>ques_no)
+                Setting_the_question(ques_no);
+                else {
+
+                }
+            }
+        });
+
+
 
     }
 
-    private void Setting_the_question() {
-
-        question.setText(questionModelArrayList.get(0).question);
-        optionA.setText(questionModelArrayList.get(0).optionA);
-        optionB.setText(questionModelArrayList.get(0).optionB);
-        optionC.setText(questionModelArrayList.get(0).optionC);
-        optionD.setText(questionModelArrayList.get(0).optionD);
+    private void Setting_the_question(int ques) {
+        question.setText(questionModelArrayList.get(ques).question);
+        optionA.setText(questionModelArrayList.get(ques).optionA);
+        optionB.setText(questionModelArrayList.get(ques).optionB);
+        optionC.setText(questionModelArrayList.get(ques).optionC);
+        optionD.setText(questionModelArrayList.get(ques).optionD);
+        ques_no++;
     }
 }

@@ -29,7 +29,7 @@
     <RadioGroup
         android:id="@+id/option_group_main"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="206dp"
         android:layout_marginBottom="116dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -47,26 +47,26 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/roboto"
-            android:textSize="18dp"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:textSize="18dp" />
 
         <RadioButton
             android:id="@+id/option_B_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:textSize="18dp"
             android:layout_weight="1"
-            android:text="RadioButton" />
+            android:fontFamily="@font/roboto"
+            android:text="RadioButton"
+            android:textSize="18dp" />
 
         <RadioButton
             android:id="@+id/option_C_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:textSize="18dp"
             android:layout_weight="1"
-            android:text="RadioButton" />
+            android:fontFamily="@font/roboto"
+            android:text="RadioButton"
+            android:textSize="18dp" />
 
         <RadioButton
             android:id="@+id/option_D_main"
@@ -74,8 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/roboto"
-            android:textSize="18dp"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:textSize="18dp" />
     </RadioGroup>
 
     <Button

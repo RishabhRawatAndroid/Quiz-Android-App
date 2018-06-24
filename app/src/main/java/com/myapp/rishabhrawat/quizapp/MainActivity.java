@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup option_group;
     RadioButton optionA,optionB,optionC,optionD;
     Button start,next;
-    static int ques_no=1;
+    int ques_no=0;
+    static String ans_key;
+    int total_ans_correct=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 question.setVisibility(View.VISIBLE);
                 option_group.setVisibility(View.VISIBLE);
 
-                Setting_the_question(ques_no);
+               Setting_the_question(ques_no);
                 new CountDownTimer(60000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
@@ -89,24 +91,43 @@ public class MainActivity extends AppCompatActivity {
 
                     public void onFinish() {
                         timer.setText("Time Finish");
+                        startnewActivity();
                     }
                 }.start();
 
             }
         });
 
-        next.setOnClickListener(new View.OnClickListener() {
+        option_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if(questionModelArrayList.size()>ques_no)
-                Setting_the_question(ques_no);
-                else {
-
-                }
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.option_A_main)
+                    ans_key = "a";
+                else if (checkedId == R.id.option_B_main)
+                    ans_key = "b";
+                else if (checkedId == R.id.option_C_main)
+                    ans_key = "c";
+                else if (checkedId == R.id.option_D_main)
+                    ans_key = "d";
+                else
+                    ans_key = " ";
             }
         });
 
-
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(questionModelArrayList.size()-1>ques_no) {
+                    checkingans();
+                    ques_no++;
+                    Setting_the_question(ques_no);
+                    option_group.clearCheck();
+                }
+                else {
+                    startnewActivity();
+                }
+            }
+        });
 
     }
 
@@ -116,6 +137,25 @@ public class MainActivity extends AppCompatActivity {
         optionB.setText(questionModelArrayList.get(ques).optionB);
         optionC.setText(questionModelArrayList.get(ques).optionC);
         optionD.setText(questionModelArrayList.get(ques).optionD);
-        ques_no++;
+    }
+
+    private void checkingans()
+    {
+        if(ans_key.equals(questionModelArrayList.get(ques_no).answer)) {
+         total_ans_correct++;
+         Toast.makeText(this, "Correct answer", Toast.LENGTH_SHORT).show();
+     }
+     else
+     {
+         Toast.makeText(this, "Wrong answer", Toast.LENGTH_SHORT).show();
+     }// we can add also the -ve marking like total_ans_correct--;
+
+    }
+
+    private void startnewActivity()
+    {
+        Intent intent=new Intent(MainActivity.this,FinalScore.class);
+        intent.putExtra("correct_ans",total_ans_correct);
+        startActivity(intent);
     }
 }

@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.nio.MappedByteBuffer;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,12 +17,14 @@ public class FinalScore extends AppCompatActivity {
 
     DatabaseReference reference;
     TextView textView;
+    Date date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_score);
 
         textView=findViewById(R.id.textView);
+        date=new Date();
 
         reference= FirebaseDatabase.getInstance().getReference().child("questionsBank1Score").child("UserScores");
         Intent intent=getIntent();
@@ -29,6 +32,7 @@ public class FinalScore extends AppCompatActivity {
         String random=reference.push().getKey(); //at place of random id we can put the gmail id
         Map<String,Object> map=new HashMap<>();
         map.put("score",intent.getIntExtra("correct_ans",0));
+        map.put("date_time",date.toString());
         reference.child(random).setValue(map);
 
 

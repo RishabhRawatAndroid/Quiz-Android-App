@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     TextView timer,question;
     RadioGroup option_group;
     RadioButton optionA,optionB,optionC,optionD;
-    Button start,next;
+    Button start,next,put;
     int ques_no=0;
     static String ans_key;
     int total_ans_correct=0;
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         optionD=findViewById(R.id.option_D_main);
         start=findViewById(R.id.button3);
         next=findViewById(R.id.button2);
+        put=findViewById(R.id.button4);
 
         next.setVisibility(View.INVISIBLE);
         timer.setVisibility(View.INVISIBLE);
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 start.setVisibility(View.INVISIBLE);
+                put.setVisibility(View.INVISIBLE);
                 next.setVisibility(View.VISIBLE);
                 timer.setVisibility(View.VISIBLE);
                 question.setVisibility(View.VISIBLE);
@@ -97,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }.start();
 
+            }
+        });
+
+        put.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PutQuestionActivity.class));
             }
         });
 

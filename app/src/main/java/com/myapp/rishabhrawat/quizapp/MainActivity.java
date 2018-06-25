@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     int ques_no=0;
     static String ans_key;
     int total_ans_correct=0;
+
+    CountDownTimer timercounter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,14 +85,14 @@ public class MainActivity extends AppCompatActivity {
                 option_group.setVisibility(View.VISIBLE);
 
                Setting_the_question(ques_no);
-                new CountDownTimer(60000, 1000) {
+                new CountDownTimer(21000*questionModelArrayList.size(), 1000) {
 
                     public void onTick(long millisUntilFinished) {
-                        timer.setText("Time Remaining : "+String.valueOf(millisUntilFinished / 1000));
+                       // timer.setText("Time Remaining : "+String.valueOf(millisUntilFinished / 1000));
                     }
 
                     public void onFinish() {
-                        timer.setText("Time Finish");
+                      //  timer.setText("Time Finish");
                         startnewActivity();
                     }
                 }.start();
@@ -137,6 +139,23 @@ public class MainActivity extends AppCompatActivity {
         optionB.setText(questionModelArrayList.get(ques).optionB);
         optionC.setText(questionModelArrayList.get(ques).optionC);
         optionD.setText(questionModelArrayList.get(ques).optionD);
+
+        if(timercounter!=null)
+            timercounter.cancel();
+
+        timercounter=new CountDownTimer(21000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                timer.setText("Time Remaining : "+String.valueOf(millisUntilFinished / 1000));
+            }
+
+            public void onFinish() {
+                timer.setText("Time Finish");
+                //startnewActivity();
+                if(ques_no<questionModelArrayList.size()-1)
+                    Setting_the_question(++ques_no);
+            }
+        }.start();
     }
 
     private void checkingans()

@@ -23,7 +23,7 @@ public class FinalScore extends AppCompatActivity {
 
         textView=findViewById(R.id.textView);
 
-        reference= FirebaseDatabase.getInstance().getReference().child("questionsBank1").child("UserScores");
+        reference= FirebaseDatabase.getInstance().getReference().child("questionsBank1Score").child("UserScores");
         Intent intent=getIntent();
         textView.setText("Total score is "+     intent.getIntExtra("correct_ans",0));
         String random=reference.push().getKey(); //at place of random id we can put the gmail id

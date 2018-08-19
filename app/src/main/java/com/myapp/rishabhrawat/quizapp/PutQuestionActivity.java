@@ -93,7 +93,7 @@ public class PutQuestionActivity extends AppCompatActivity {
     }
 
     private void put_question_in_database() {
-        reference = FirebaseDatabase.getInstance().getReference().child("questionsBank3").child("question" + num);
+        reference = FirebaseDatabase.getInstance().getReference().child("questionsBank1").child("question" + num);
         QuestionModel model=new QuestionModel(question.getText().toString(),option_A.getText().toString(),option_B.getText().toString(),
                 option_C.getText().toString(),option_D.getText().toString(),answer_text);
         reference.setValue(model);
